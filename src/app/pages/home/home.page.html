@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="header-title">Age Calculator</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="content-background">
+  <h4>Check your age on any specific date!</h4>
+  <p>
+    This age calculator helps you to select your birth date and current date.
+    Current date need not be today, you can check for any future dates too.
+  </p>
+
+  <h4>----Please select dates----</h4>
+  <!-- Date of Birth Section -->
+  <ion-item class="custom-item">
+    <ion-label class="custom-label">Date of Birth</ion-label>
+    <ion-datetime-button
+      datetime="birthdate"
+      color="primary"
+      class="datetime-button"
+    ></ion-datetime-button>
+
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime
+          presentation="date"
+          (ionChange)="onBirthDateChange($event)"
+          [value]="selectedDate"
+          id="birthdate"
+        ></ion-datetime>
+      </ng-template>
+    </ion-modal>
+  </ion-item>
+
+  <!-- Current Date Section -->
+  <ion-item class="custom-item">
+    <ion-label class="custom-label">Current Date</ion-label>
+    <ion-datetime-button
+      datetime="currentdate"
+      color="secondary"
+      class="datetime-button"
+    ></ion-datetime-button>
+
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime
+          presentation="date"
+          (ionChange)="onCurrentDateChange($event)"
+          [value]="currentDate"
+          id="currentdate"
+        ></ion-datetime>
+      </ng-template>
+    </ion-modal>
+  </ion-item>
+
+  <!-- Calculated Age Label (Text) -->
+  <div class="label-finalage">Calculated Age</div>
+
+  <!-- Display the calculated age -->
+  <div class="age-text">{{years}} years {{months}} months {{days}} days</div>
+
+  <ion-footer collapse="fade" class="footer">
+    <ion-toolbar>
+      <span class="footer-text">2024 | &copy; Shreya Ved</span>
+    </ion-toolbar>
+  </ion-footer>
+</ion-content>
